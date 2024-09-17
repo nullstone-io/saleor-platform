@@ -1,0 +1,32 @@
+version: "0.1"
+
+datastores:
+  db:
+    module: nullstone/aws-rds-postgres
+    vars:
+      postgres_version: '16'
+    connections:
+      network: network0
+  redis:
+    module: nullstone/aws-elasticache
+    connections:
+      network: network0
+
+cluster_namespaces:
+  namespace0:
+    module: nullstone/aws-fargate-namespace
+    connections:
+      cluster: cluster0
+
+clusters:
+  cluster0:
+    module: nullstone/aws-fargate
+    connections:
+      network: network0
+
+networks:
+  network0:
+    module: nullstone/aws-network
+    vars:
+      service_namespace: '{{ NULLSTONE_ENV }}'
+

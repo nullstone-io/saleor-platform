@@ -1,0 +1,12 @@
+version: "0.1"
+
+datastores:
+  db:
+    vars:
+      high_availability: true
+      instance_class: 'db.t3.micro'
+      enforce_ssl: true
+  redis:
+    vars:
+      node_type: 'cache.t3.small'
+      enforce_ssl: true
